@@ -14,8 +14,16 @@ const change = (e: any) => {
 </script>
 
 <template>
+   <ParticlesBg
+      class="fixed w-full h-screen inset-0 z-[-1]"
+      :quantity="100"
+      :ease="100"
+      :color="isDark ? '#FFF' : '#000'"
+      :staticity="10"
+      refresh
+    />
  <div
-    class="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
+    class="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-transparent"
   >
     <span
       class="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10"
@@ -27,14 +35,20 @@ const change = (e: any) => {
     <RippleButton class="z-20">
       <span>Click Me</span>
     </RippleButton>
-    <ParticlesBg
-      class="absolute inset-0"
-      :quantity="100"
-      :ease="100"
-      :color="isDark ? '#FFF' : '#000'"
-      :staticity="10"
-      refresh
-    />
+  </div>
+  <div
+    class="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-transparent"
+  >
+    <span
+      class="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10"
+    >
+      Hello World
+    </span>
+    <IInput id="input-demo" placeholder="请输入内容" @change="change" containerClass="inputClass"/>
+    <PerspectiveCard class="z-10"/>
+    <RippleButton class="z-20">
+      <span>Click Me</span>
+    </RippleButton>
   </div>
 </template>
 
