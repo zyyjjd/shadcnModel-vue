@@ -2,12 +2,15 @@
     <ClientOnly>
       <CardContainer>
         <CardBody
-          class="group/card relative size-auto rounded-xl border border-black/[0.1] bg-gray-50 p-6 sm:w-[30rem] dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]"
+          :class="cn(
+            'group/card relative size-auto rounded-xl border border-black/[0.1] bg-gray-50 p-6 sm:w-[40rem] dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]',
+            cardClass
+            )"
         >
         <!-- 标题 -->
           <CardItem
             :translate-z="50"
-            class="text-xl font-bold text-neutral-600 dark:text-white"
+            class="text-xl font-bold max-w-full text-neutral-600 dark:text-white"
           >
            <slot name="title"/>
           </CardItem>
@@ -16,7 +19,7 @@
             v-if="$slots.desc"
             as="p"
             translate-z="60"
-            class="mt-2 max-w-sm text-sm text-neutral-500 dark:text-neutral-300"
+            class="mt-2 max-w-full text-sm text-neutral-500 dark:text-neutral-300"
           >
            <slot name="desc"/>
           </CardItem>
@@ -61,10 +64,10 @@
   
   <script setup lang="ts">
   import { CardContainer, CardBody, CardItem } from "@/components/ui/card-3d";
-//   import InteractiveHoverButton from "@/components/ui/interactive-hover-button/InteractiveHoverButton.vue";
+  import {cn} from "@/lib/utils";
 
-//   function onClick() {
-//    console.log('click');
+  const {cardClass,abc} = defineProps<{
+    cardClass?: string;
+  }>();
    
-//   }
   </script>
