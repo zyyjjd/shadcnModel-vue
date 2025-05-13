@@ -54,7 +54,8 @@ onMounted(() => {
   });
 
   t2
-    .fromTo('#project-1', { opacity:0,xPercent: 50, yPercent: 50, duration: 1 }, { opacity:1,xPercent: 0, yPercent: 0 })
+    .fromTo('#card', { scale: 0, xPercent: 50, yPercent: 50, duration: 1 }, { scale: 1, xPercent: 0, yPercent: 0 })
+    .fromTo('#project-1', { opacity:0,xPercent: 50, yPercent: 50, duration: 1 }, { opacity:1,xPercent: 0, yPercent: 0 },'+=0.3')
     .fromTo('#project-2', { opacity:0,xPercent: -50, yPercent: 50, duration: 1 }, { opacity:1,xPercent: 0, yPercent: 0 }, '<=')
     .fromTo('#project-3', { opacity:0,xPercent: 50, yPercent: -50, duration: 1 }, { opacity:1,xPercent: 0, yPercent: 0 }, '<=')
     .fromTo('#project-4', { opacity:0,xPercent: -50, yPercent: -50, duration: 1 }, { opacity:1,xPercent: 0, yPercent: 0 }, '<=')
@@ -95,7 +96,7 @@ onUnmounted(() => {
     <ParticlesBg class="absolute inset-0" :quantity="100" :ease="100" :color="isDark ? '#FFF' : '#000'" :staticity="10"
       refresh>
     </ParticlesBg>
-    <SimplePerspectiveCard :cardClass="'md:w-[80rem]'">
+    <SimplePerspectiveCard :cardClass="'md:w-[80rem]'" id='card'>
       <template #title>
         <div>我的项目</div>
       </template>
