@@ -22,7 +22,7 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    extensions: ['.vue', '.ts'],
+    extensions: ['.vue', '.ts','.js','.gltf'],
     alias: {
       "@": path.resolve(__dirname, "src")
     }

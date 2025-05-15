@@ -4,12 +4,13 @@ import SimplePerspectiveCard from '@/components/card/simplePerspectiveCard.vue';
 import ParticlesBg from '@/components/ui/particles-bg/ParticlesBg.vue';
 import RippleButton from '@/components/ui/ripple-button/RippleButton.vue';
 import IInput from '@/components/ui/input/IInput.vue';
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted } from "vue";
 import { useColorMode } from "@vueuse/core";
 import gsap from 'gsap';
 import ScrollTrigger from "gsap/ScrollTrigger.js";
 import Bg from '@/assets/bg_1.jpg';
 import Typed from 'typed.js';
+import ThreeModel from '@/components/three/index.vue'
 
 const isDark = computed(() => useColorMode().value == "dark");
 
@@ -160,10 +161,8 @@ onUnmounted(() => {
       </SimplePerspectiveCard>
     </section>
     <!-- 粒子特效展示 -->
-    <section class="w-full h-screen bg-green-500">
-      <!-- <ParticlesBg class="absolute inset-0" :quantity="100" :ease="100" :color="isDark ? '#FFF' : '#000'" :staticity="10"
-      refresh>
-    </ParticlesBg> -->
+    <section class="w-full h-screen">
+      <ThreeModel/>
     </section>
     <section class="w-full h-screen bg-green-400">
 

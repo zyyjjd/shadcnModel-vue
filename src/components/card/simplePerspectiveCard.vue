@@ -66,7 +66,7 @@
   import { CardContainer, CardBody, CardItem } from "@/components/ui/card-3d";
   import {cn} from "@/lib/utils";
 
-  const {cardClass,abc} = defineProps<{
+  const {cardClass} = defineProps<{
     cardClass?: string;
   }>();
    
