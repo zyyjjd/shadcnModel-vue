@@ -1,39 +1,24 @@
 <script setup lang="ts">
-import PerspectiveCard from '@/components/card/PerspectiveCard.vue';
 import SimplePerspectiveCard from '@/components/card/simplePerspectiveCard.vue';
 import ParticlesBg from '@/components/ui/particles-bg/ParticlesBg.vue';
-import RippleButton from '@/components/ui/ripple-button/RippleButton.vue';
-import IInput from '@/components/ui/input/IInput.vue';
 import { computed, onMounted, onUnmounted } from "vue";
 import { useColorMode } from "@vueuse/core";
 import gsap from 'gsap';
 import ScrollTrigger from "gsap/ScrollTrigger.js";
 import Bg from '@/assets/bg_1.jpg';
 import Typed from 'typed.js';
-import ThreeModel from '@/components/three/index.vue';
-import {ExpandableGallery} from "@/components/ui/expandable-gallery";
 import {TextGenerateEffect} from '@/components/ui/text-generate-effect';
-import GlobeBall from '@/components/GlobeBall'
+import GlobeBall from '@/components/GlobeBall/index.vue';
+import SingleTimeline from '@/components/SingleTimeline/index.vue'
+
 
 const isDark = computed(() => useColorMode().value == "dark");
 
 gsap.registerPlugin(ScrollTrigger);
 
-const images = [
-  "https://images.unsplash.com/photo-1709884735646-897b57461d61?q=80&w=3628&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1502085671122-2d218cd434e6?q=80&w=3626&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-];
-
 let t1: gsap.core.Timeline | null = null;
 let t2: gsap.core.Timeline | null = null;
-let t3: gsap.core.Timeline | null = null;
 let typed: Typed | null = null;
-
-const change = (e: any) => {
-  console.log(e.target.value, '????');
-}
 
 onMounted(() => {
   typed = new Typed(document.querySelector('#typed'),{
@@ -113,7 +98,7 @@ onUnmounted(() => {
           </div>
           <div class="text-xl md:text-2xl mb-8 text-pink-300">
             <TextGenerateEffect words="I focus on creating beautiful and powerful websites and
-            applications, and I love exploring new technologies and creative solutions." />
+            applications, and I love exploring new technologies and creative solutions." class=""/>
         
           </div>
         </div>
@@ -132,8 +117,7 @@ onUnmounted(() => {
           <div>我的项目</div>
         </template>
         <template #desc>
-          <span>以下是我最近完成的一些项目，展示了我在前端和后端开发方面的技能和经验。
-            每个项目都代表了我对用户体验和技术实现的追求。</span>
+          <span>just do it to be better</span>
         </template>
         <template #content>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -169,14 +153,12 @@ onUnmounted(() => {
       </SimplePerspectiveCard>
     </section>
     <section class="w-full h-screen">
-      <!-- <ThreeModel/> -->
-      <GlobeBall/>
+      <SingleTimeline/>
     </section>
     <section class="w-full h-screen">
-      <ExpandableGallery :images="images" class="p-4 md:w-[40rem]"/>
+      <GlobeBall/>
     </section>
   </main>
-
 </template>
 
 <style>
