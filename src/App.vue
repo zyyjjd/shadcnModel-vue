@@ -10,11 +10,21 @@ import gsap from 'gsap';
 import ScrollTrigger from "gsap/ScrollTrigger.js";
 import Bg from '@/assets/bg_1.jpg';
 import Typed from 'typed.js';
-import ThreeModel from '@/components/three/index.vue'
+import ThreeModel from '@/components/three/index.vue';
+import {ExpandableGallery} from "@/components/ui/expandable-gallery";
+import {TextGenerateEffect} from '@/components/ui/text-generate-effect';
+import GlobeBall from '@/components/GlobeBall'
 
 const isDark = computed(() => useColorMode().value == "dark");
 
 gsap.registerPlugin(ScrollTrigger);
+
+const images = [
+  "https://images.unsplash.com/photo-1709884735646-897b57461d61?q=80&w=3628&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1502085671122-2d218cd434e6?q=80&w=3626&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+];
 
 let t1: gsap.core.Timeline | null = null;
 let t2: gsap.core.Timeline | null = null;
@@ -98,21 +108,19 @@ onUnmounted(() => {
       <img class="w-full h-full object-cover absolute inset-0" :src="Bg" alt="" id='scroll-trigger' />
       <div class="fixed flex flex-col justify-center items-center px-4 z-10" id="Introduction">
         <div class="max-w-3xl mx-auto text-center">
-          <!-- <h1 class="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
-          Hello World
-        </h1> -->
           <div>
             <span class="text-4xl md:text-6xl font-bold mb-6 text-transparent whitespace-nowrap tracking-wide" id="typed" style="-webkit-text-stroke: 1.5px rgb(168 85 247);"></span>
           </div>
-          <p class="text-xl md:text-2xl mb-8 text-pink-300">
-            I focus on creating beautiful and powerful websites and
-            applications, and I love exploring new technologies and creative solutions.
-          </p>
+          <div class="text-xl md:text-2xl mb-8 text-pink-300">
+            <TextGenerateEffect words="I focus on creating beautiful and powerful websites and
+            applications, and I love exploring new technologies and creative solutions." />
+        
+          </div>
         </div>
       </div>
-      <div class="w-[200px] h-[200px] bg-gray-500 relative top-1/3 -translate-y-1/2 z-[999]" id="animationDiv">
+      <!-- <div class="w-[200px] h-[200px] bg-gray-500 relative top-1/3 -translate-y-1/2 z-[999]" id="animationDiv">
         动画盒子
-      </div>
+      </div> -->
     </section>
     <!-- 卡片 -->
     <section class="flex items-center justify-center relative bg-white z-20 w-full h-screen" id='card-container'>
@@ -160,12 +168,12 @@ onUnmounted(() => {
         </template>
       </SimplePerspectiveCard>
     </section>
-    <!-- 粒子特效展示 -->
     <section class="w-full h-screen">
-      <ThreeModel/>
+      <!-- <ThreeModel/> -->
+      <GlobeBall/>
     </section>
-    <section class="w-full h-screen bg-green-400">
-
+    <section class="w-full h-screen">
+      <ExpandableGallery :images="images" class="p-4 md:w-[40rem]"/>
     </section>
   </main>
 
