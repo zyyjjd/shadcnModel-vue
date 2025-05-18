@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SimplePerspectiveCard from '@/components/card/simplePerspectiveCard.vue';
 import ParticlesBg from '@/components/ui/particles-bg/ParticlesBg.vue';
-import { computed, onMounted, onUnmounted } from "vue";
+import { computed, onMounted, onUnmounted, reactive } from "vue";
 import gsap from 'gsap';
 import ScrollTrigger from "gsap/ScrollTrigger.js";
 import Bg from '@/assets/bg_1.jpg';
@@ -16,7 +16,7 @@ let t1: gsap.core.Timeline | null = null;
 let t2: gsap.core.Timeline | null = null;
 let typed: Typed | null = null;
 
-const timeline_data = [
+const timeline_data = reactive([
   {
     id: "1",
     label: "2016.09 - 2020.06",
@@ -32,8 +32,7 @@ const timeline_data = [
     label: "2021.10 - today",
     desc: "南京恩博科技有限公司 前端工程师 参与公司内部项目开发"
   },
-
-];
+])
 
 onMounted(() => {
   typed = new Typed(document.querySelector('#typed'), {
@@ -48,45 +47,69 @@ onMounted(() => {
     autoInsertCss: true,
   })
 
-  t1 = gsap.timeline({
+  // t1 = gsap.timeline({
+  //   scrollTrigger: {
+  //     trigger: "#scroll-trigger-wrapper",
+  //     start: "top",
+  //     end: "bottom -=50",
+  //     scrub: true,
+  //     pin: "#scroll-trigger", // 当滚动条滚动时，保持元素固定在视窗内
+  //     // markers: true,
+  //   },
+  // });
+
+  // t1
+  //   .to("#scroll-trigger",
+  //     {
+  //       scale: 1.2,
+  //     }
+  //   )
+  //   .to('#Introduction', {
+  //     opacity: 0,
+  //   }, '<=')
+
+
+
+  gsap.to('#Introduction', {
     scrollTrigger: {
-      trigger: "#scroll-trigger-wrapper",
-      start: "top",
-      end: "bottom +=200",
+      trigger: '#scroll-trigger-wrapper',
+      start: 'top top',
+      end: '+=50%',
       scrub: 0.5,
-      pin: "#scroll-trigger", // 当滚动条滚动时，保持元素固定在视窗内
-      markers: true,
+      pin: false,
+      // markers: true,
     },
-  });
+    opacity: 0,
+  })
 
-  t1
-    .to("#scroll-trigger",
-      {
-        scale: 1.2,
-      }
-    )
-    .to('#Introduction', {
-      opacity: 0,
-    }, '<=')
-
+  gsap.to('#scroll-trigger', {
+    scrollTrigger: {
+      trigger: '#container',
+      start: 'top',
+      end: 'bottom -=100',
+      scrub: true,
+      pin: '#scroll-trigger',
+      // markers: true,
+    },
+  })
 
   t2 = gsap.timeline({
     scrollTrigger: {
       trigger: '#card-container',
-      start: '-=400',
-      end: 'top',
-      scrub: true,
+      start: '+=50%',
+      end: 'bottom',
+      scrub: 0.5,
       pin: false,
-      // markers: true
+      markers: true
     }
   });
 
   t2
-    .fromTo('#card', { scale: 0, xPercent: 50, yPercent: 50, duration: 1 }, { scale: 1, xPercent: 0, yPercent: 0 })
-    .fromTo('#project-1', { opacity: 0, xPercent: 50, yPercent: 50, duration: 1 }, { opacity: 1, xPercent: 0, yPercent: 0 }, '+=0.3')
-    .fromTo('#project-2', { opacity: 0, xPercent: -50, yPercent: 50, duration: 1 }, { opacity: 1, xPercent: 0, yPercent: 0 }, '<=')
-    .fromTo('#project-3', { opacity: 0, xPercent: 50, yPercent: -50, duration: 1 }, { opacity: 1, xPercent: 0, yPercent: 0 }, '<=')
-    .fromTo('#project-4', { opacity: 0, xPercent: -50, yPercent: -50, duration: 1 }, { opacity: 1, xPercent: 0, yPercent: 0 }, '<=')
+    .fromTo('#card', { scale: 0, xPercent: 50, yPercent: 50, }, { scale: 1, xPercent: 0, yPercent: 0 })
+    .fromTo('#project-1', { opacity: 0, xPercent: 50, yPercent: 50, }, { opacity: 1, xPercent: 0, yPercent: 0 }, '+=0.3')
+    .fromTo('#project-2', { opacity: 0, xPercent: -50, yPercent: 50, }, { opacity: 1, xPercent: 0, yPercent: 0 }, '<=')
+    .fromTo('#project-3', { opacity: 0, xPercent: 50, yPercent: -50, }, { opacity: 1, xPercent: 0, yPercent: 0 }, '<=')
+    .fromTo('#project-4', { opacity: 0, xPercent: -50, yPercent: -50, }, { opacity: 1, xPercent: 0, yPercent: 0 }, '<=')
     .to('#project-1 h3, #project-1 p', { color: '#fff' }, '+=0.3')
     .to('#project-2 h3, #project-2 p', { color: '#fff' }, '<=')
     .to('#project-3 h3, #project-3 p', { color: '#fff' }, '<=')
@@ -96,8 +119,8 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  t1?.kill();
-  t2?.kill();
+  // t1?.kill();
+  // t2?.kill();
   typed?.destroy();
 })
 
@@ -107,7 +130,7 @@ onUnmounted(() => {
   <main id="container">
     <!-- 简介 -->
     <section class="w-full h-screen overflow-hidden flex items-center justify-center" id="scroll-trigger-wrapper">
-      <img class="w-full h-full object-cover absolute inset-0" :src="Bg" alt="" id='scroll-trigger' />
+      <img class="w-full h-full object-cover absolute inset-0 backdrop-blur-sm" :src="Bg" alt="" id='scroll-trigger' />
       <div class="fixed flex flex-col justify-center items-center px-4 z-10" id="Introduction">
         <div class="max-w-3xl mx-auto text-center backdrop-blur-sm">
           <div>
@@ -121,15 +144,16 @@ onUnmounted(() => {
       </div>
     </section>
     <!-- 时间轴 -->
-    <section class="w-full h-screen">
-      <SingleTimeline :data="timeline_data" title="学习&工作经历" titleClass="relative" itemClass="text-white md:text-xl"
+    <section class="w-full h-screen flex items-center" id='card-container'>
+      <SingleTimeline :data="timeline_data" title="学习&工作经历" titleClass="relative"
+        itemClass="text-[#272627] font-semibold md:text-2xl text-xl"
         containerClass="bg-transparent backdrop-blur-[10px]" />
     </section>
     <!-- 卡片 -->
-    <section class="flex items-center justify-center relative bg-[#fff] z-20 w-full h-screen" id='card-container'>
+    <section class="flex items-center justify-center relative z-20 w-full h-screen">
       <ParticlesBg class="absolute inset-0" :quantity="100" :ease="100" color="#000" :staticity="10" refresh>
       </ParticlesBg>
-      <SimplePerspectiveCard cardClass="md:w-[80rem] bg-white/10 backdrop-blur-2xl border-white/40" id='card'>
+      <SimplePerspectiveCard cardClass="md:w-[80rem] bg-black/10 backdrop-blur-2xl border-black/40" id='card'>
         <template #title>
           <div class="text-white">我的项目</div>
         </template>

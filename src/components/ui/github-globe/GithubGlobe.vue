@@ -1,8 +1,5 @@
 <template>
-  <canvas
-    ref="githubGlobeRef"
-    :class="cn('w-96 h-96', props.class)"
-  ></canvas>
+  <canvas ref="githubGlobeRef" :class="cn('w-96 h-96', props.class)"></canvas>
 </template>
 
 <script lang="ts" setup>
@@ -261,7 +258,7 @@ function startAnimation() {
 }
 
 function animate() {
-  globe.rotation.y += 0.01; // Rotate globe
+  globe.rotation.y += 0.005; // Rotate globe
 
   renderer.render(scene, camera);
 

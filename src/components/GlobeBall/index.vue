@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {GithubGlobe} from '@/components/ui/github-globe'
+import { GithubGlobe } from '@/components/ui/github-globe'
 
 const globeConfig = {
     pointSize: 1,
@@ -401,9 +401,9 @@ const sampleArcs = [
 </script>
 
 <template>
-    <ClientOnly>
-        <div class="flex w-full flex-col items-center justify-center">
-            <GithubGlobe :globe-config="globeConfig" :data="sampleArcs" class="h-[32rem]" />
-        </div>
-    </ClientOnly>
+    <!-- <ClientOnly> -->
+    <div class="flex w-full flex-col items-center justify-center">
+        <GithubGlobe :globe-config="globeConfig" :data="sampleArcs" class="h-[32rem]" />
+    </div>
+    <!-- </ClientOnly> -->
 </template>
