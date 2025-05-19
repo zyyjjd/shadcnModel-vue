@@ -1,20 +1,26 @@
 <script setup lang="ts">
 import SimplePerspectiveCard from '@/components/card/simplePerspectiveCard.vue';
 import ParticlesBg from '@/components/ui/particles-bg/ParticlesBg.vue';
-import { computed, onMounted, onUnmounted, reactive } from "vue";
+import { onMounted, onUnmounted, reactive,ref } from "vue";
 import gsap from 'gsap';
 import ScrollTrigger from "gsap/ScrollTrigger.js";
-import Bg from '@/assets/bg_1.jpg';
+import Bg_1 from '@/assets/bg_1.jpg';
 import Typed from 'typed.js';
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 import GlobeBall from '@/components/GlobeBall/index.vue';
-import SingleTimeline from '@/components/SingleTimeline/index.vue'
+import SingleTimeline from '@/components/SingleTimeline/index.vue';
+// import Email from '@/components/Email/index.vue'
+import Email from '@/components/Email/index.vue'
+import {IInput} from "@/components/ui/input";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-let t1: gsap.core.Timeline | null = null;
 let t2: gsap.core.Timeline | null = null;
 let typed: Typed | null = null;
+
+const imgBg = ref(Bg_1);
+const imgOpacity = ref(1);
 
 const timeline_data = reactive([
   {
@@ -47,29 +53,6 @@ onMounted(() => {
     autoInsertCss: true,
   })
 
-  // t1 = gsap.timeline({
-  //   scrollTrigger: {
-  //     trigger: "#scroll-trigger-wrapper",
-  //     start: "top",
-  //     end: "bottom -=50",
-  //     scrub: true,
-  //     pin: "#scroll-trigger", // 当滚动条滚动时，保持元素固定在视窗内
-  //     // markers: true,
-  //   },
-  // });
-
-  // t1
-  //   .to("#scroll-trigger",
-  //     {
-  //       scale: 1.2,
-  //     }
-  //   )
-  //   .to('#Introduction', {
-  //     opacity: 0,
-  //   }, '<=')
-
-
-
   gsap.to('#Introduction', {
     scrollTrigger: {
       trigger: '#scroll-trigger-wrapper',
@@ -86,12 +69,58 @@ onMounted(() => {
     scrollTrigger: {
       trigger: '#container',
       start: 'top',
-      end: 'bottom -=100',
+      end: 'bottom-=' + document.getElementById('card-section')?.offsetHeight,
       scrub: true,
       pin: '#scroll-trigger',
       // markers: true,
     },
   })
+
+  // gsap.to('#scroll-trigger',{
+  //   scrollTrigger: {
+  //     trigger: '#card-section',
+  //     start: 'top',
+  //     end: 'bottom',
+  //     scrub: false,
+  //     pin: false,
+  //     markers: true,
+  //     onEnter: () => {
+  //       gsap.to('#scroll-trigger', {
+  //         scale: 1.05,
+  //         filter: 'blur(8px)',
+  //         opacity: 0,
+  //         duration: 0.5,
+  //         onComplete: () => {
+  //           imgBg.value = Bg_2;
+  //           gsap.to('#scroll-trigger', {
+  //             scale: 1,
+  //             filter: 'blur(0px)',
+  //             opacity: 1,
+  //             duration: 0.5
+  //           });
+  //         }
+  //       });
+  //     },
+  //     onLeaveBack: () => {
+  //       gsap.to('#scroll-trigger', {
+  //         scale: 1.05,
+  //         filter: 'blur(8px)',
+  //         opacity: 0,
+  //         duration: 0.5,
+  //         onComplete: () => {
+  //           imgBg.value = Bg_1;
+  //           gsap.to('#scroll-trigger', {
+  //             scale: 1,
+  //             filter: 'blur(0px)',
+  //             opacity: 1,
+  //             duration: 0.5
+  //           });
+  //         }
+  //       });
+  //     }
+  //   },
+  //   ease:'power1.inOut',
+  // })
 
   t2 = gsap.timeline({
     scrollTrigger: {
@@ -100,7 +129,7 @@ onMounted(() => {
       end: 'bottom',
       scrub: 0.5,
       pin: false,
-      markers: true
+      // markers: true
     }
   });
 
@@ -120,7 +149,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   // t1?.kill();
-  // t2?.kill();
+  t2?.kill();
   typed?.destroy();
 })
 
@@ -130,7 +159,8 @@ onUnmounted(() => {
   <main id="container">
     <!-- 简介 -->
     <section class="w-full h-screen overflow-hidden flex items-center justify-center" id="scroll-trigger-wrapper">
-      <img class="w-full h-full object-cover absolute inset-0 backdrop-blur-sm" :src="Bg" alt="" id='scroll-trigger' />
+      <img class="w-full h-full object-cover absolute inset-0 backdrop-blur-sm" :src="imgBg"
+        :style="{opacity: imgOpacity}" alt="" id='scroll-trigger' />
       <div class="fixed flex flex-col justify-center items-center px-4 z-10" id="Introduction">
         <div class="max-w-3xl mx-auto text-center backdrop-blur-sm">
           <div>
@@ -150,15 +180,15 @@ onUnmounted(() => {
         containerClass="bg-transparent backdrop-blur-[10px]" />
     </section>
     <!-- 卡片 -->
-    <section class="flex items-center justify-center relative z-20 w-full h-screen">
+    <section class="flex items-center justify-center relative z-20 w-full h-screen" id="card-section">
       <ParticlesBg class="absolute inset-0" :quantity="100" :ease="100" color="#000" :staticity="10" refresh>
       </ParticlesBg>
       <SimplePerspectiveCard cardClass="md:w-[80rem] bg-black/10 backdrop-blur-2xl border-black/40" id='card'>
         <template #title>
-          <div class="text-white">我的项目</div>
+          <div class="text-white">我的工作</div>
         </template>
         <template #desc>
-          <span class="text-[#f0f0f0]">just do it to be better</span>
+          <span class="text-[#f0f0f0]">和不少人合作开发了一些简单的项目</span>
         </template>
         <template #content>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -194,8 +224,9 @@ onUnmounted(() => {
       </SimplePerspectiveCard>
     </section>
     <!-- 3d globe & 邮件-->
-    <section class="w-full h-screen">
+    <section class="w-full h-screen bg-black relative flex items-center px-10" id="email-section">
       <GlobeBall />
+      <Email />
     </section>
   </main>
 </template>
