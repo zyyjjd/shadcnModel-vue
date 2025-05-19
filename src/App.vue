@@ -193,30 +193,30 @@ onUnmounted(() => {
         <template #content>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="rounded-lg bg-white/10 backdrop-blur-sm p-6 border-0 " id='project-1'>
-              <h3 class="text-xl font-semibold mb-2 text-transparent">电子商务平台</h3>
+              <h3 class="text-xl font-semibold mb-2 text-transparent">CMS管理系统</h3>
               <p class="text-transparent">
-                使用 Next.js 和 Tailwind CSS 构建的现代电子商务网站，包含产品展示、购物车和支付功能。
+                react15 + umi + antd + dva + less + ol 实现的简单后台管理系统
               </p>
             </div>
 
             <div class="rounded-lg bg-white/10 backdrop-blur-sm p-6 border-0 " id='project-2'>
-              <h3 class="text-xl font-semibold mb-2 text-transparent">社交媒体应用</h3>
+              <h3 class="text-xl font-semibold mb-2 text-transparent">森林防火展示平台</h3>
               <p class="text-transparent">
-                使用 Next.js 和 Tailwind CSS 构建的现代电子商务网站，包含产品展示、购物车和支付功能。
+                react17 + umi + antd + dva + less + echarts + cesium 实现的展示平台，包含地图、数据展示、数据查询等功能。
               </p>
             </div>
 
             <div class="rounded-lg bg-white/10 backdrop-blur-sm p-6 border-0 " id='project-3'>
-              <h3 class="text-xl font-semibold mb-2 text-transparent">数据可视化仪表板</h3>
+              <h3 class="text-xl font-semibold mb-2 text-transparent">森林大屏</h3>
               <p class="text-transparent">
-                使用 D3.js 和 Vue.js 构建的交互式数据可视化仪表板，帮助用户理解复杂数据。
+                react18 + vite + antd + echarts + tailwindcss + ol + zustand 实现的大屏展示平台，包含地图、数据展示、数据查询等功能。
               </p>
             </div>
 
             <div class="rounded-lg bg-white/10 backdrop-blur-sm p-6 border-0 " id='project-4'>
-              <h3 class="text-xl font-semibold mb-2 text-transparent">移动应用程序</h3>
+              <h3 class="text-xl font-semibold mb-2 text-transparent">森林防火办公平台</h3>
               <p class="text-transparent">
-                使用 React Native 开发的跨平台移动应用，提供流畅的用户体验和离线功能。
+                vue2 + ruoyi + element-ui + sass + ol + vuex 实现的森林防火后台管理系统
               </p>
             </div>
           </div>
