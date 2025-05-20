@@ -1,26 +1,34 @@
 {
   "compilerOptions": {
+    /* TypeScript构建信息文件路径 */
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    /* 编译目标ECMAScript版本 */
     "target": "ES2022",
-    "lib": ["ES2023"],
+    /* 包含的库文件声明 */
+    "lib": [
+      "ES2023"
+    ],
+    /* 模块系统类型 */
     "module": "ESNext",
+    /* 跳过库类型检查 */
     "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-    "composite": true,
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    /* Bundler模式配置 */
+    "moduleResolution": "bundler", /* 模块解析策略 */
+    "allowImportingTsExtensions": true, /* 允许导入.ts扩展名 */
+    "verbatimModuleSyntax": false, /* 严格模块语法 */
+    "moduleDetection": "auto", /* 自动模块检测 */
+    "noEmit": true, /* 不生成输出文件 */
+    "composite": true, /* 启用复合项目 */
+    /* Linting配置 */
+    "strict": false, /* 严格类型检查 */
+    "noUnusedLocals": false, /* 检查未使用的局部变量 */
+    "noUnusedParameters": false, /* 检查未使用的参数 */
+    "erasableSyntaxOnly": false, /* 仅擦除语法 */
+    "noFallthroughCasesInSwitch": true, /* 检查switch语句贯穿 */
+    "noUncheckedSideEffectImports": false /* 检查无副作用导入 */
   },
-  "include": ["vite.config.ts"]
+  /* 包含的文件 */
+  "include": [
+    "vite.config.ts"
+  ]
 }

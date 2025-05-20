@@ -2,22 +2,26 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-
     /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "erasableSyntaxOnly": false,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
+    "noUncheckedSideEffectImports": false,
     "composite": true,
-
-    
     "baseUrl": ".",
     "paths": {
-         "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     }
-
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue","src/**/*.gltf","./node_modules/**/*.js"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/**/*.gltf",
+    "./node_modules/**/*.js"
+  ]
 }

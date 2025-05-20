@@ -237,7 +237,7 @@ onUnmounted(() => {
     <!-- 技能 -->
     <section class="w-full h-screen bg-black relative grid xl:grid-cols-[2fr_1fr] grid-cols-1 px-10" id="kills-section">
       <div class="flex items-center">
-        <KillsList/>
+        <!-- <KillsList/> -->
       </div>
       <div class="flex items-center">
         <KillsIcons/>
