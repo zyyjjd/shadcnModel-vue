@@ -1,27 +1,28 @@
 <script setup lang="ts">
 import { GithubGlobe } from '@/components/ui/github-globe'
+import { Meteors } from "@/components/ui/meteors";
 
 const globeConfig = {
-    pointSize: 1,
-    globeColor: "#0b43bd",
-    showAtmosphere: true,
-    atmosphereColor: "#FFFFFF",
-    atmosphereAltitude: 0.1,
-    emissive: "#062056",
-    emissiveIntensity: 0.1,
-    shininess: 0.9,
-    polygonColor: "rgba(255,255,255,1)",
-    ambientLight: "#38bdf8",
+    pointSize: 1, // 地球上单个点的大小
+    globeColor: "#0b43bd", //地球表面颜色
+    showAtmosphere: true, //是否显示大气层
+    atmosphereColor: "#FFFFFF", //大气层颜色
+    atmosphereAltitude: 0.2, //大气层高度
+    emissive: "#062056", //地球仪材质的自发光颜色
+    emissiveIntensity: 0.1, //地球仪材质的自发光强度
+    shininess: 0.9, //球体材料亮度
+    polygonColor: "rgba(255,255,255,1)", //地球多边形边界的颜色
+    ambientLight: "#38bdf8", //
     directionalLeftLight: "#ffffff",
     directionalTopLight: "#ffffff",
     pointLight: "#ffffff",
     arcTime: 1000,
-    arcLength: 1,
-    rings: 1,
-    maxRings: 10,
-    initialPosition: { lat: 22.3193, lng: 114.1694 },
-    autoRotate: true,
-    autoRotateSpeed: 0.5,
+    arcLength: 1,//球体上弧线的长度
+    rings: 1,//每个点显示的环数
+    maxRings: 10,//每个点周围环数最大值
+    initialPosition: { lat: 22.3193, lng: 114.1694 }, //地球的初维度和经度
+    autoRotate: true,//自动旋转地球
+    autoRotateSpeed: 0.5, //地球自转速度
 };
 
 const colors = [
@@ -402,8 +403,9 @@ const sampleArcs = [
 
 <template>
     <!-- <ClientOnly> -->
-    <div class="flex w-full flex-col items-center justify-center">
-        <GithubGlobe :globe-config="globeConfig" :data="sampleArcs" class="h-[32rem]" />
+    <div>
+        <Meteors class="absolute inset-0" :count="30"/>
+        <GithubGlobe :globe-config="globeConfig" :data="sampleArcs" class="md:h-[50rem] md:w-[50rem] h-96 w-96" />
     </div>
     <!-- </ClientOnly> -->
 </template>

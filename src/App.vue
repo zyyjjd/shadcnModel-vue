@@ -9,14 +9,14 @@ import Typed from 'typed.js';
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 import GlobeBall from '@/components/GlobeBall/index.vue';
 import SingleTimeline from '@/components/SingleTimeline/index.vue';
-// import Email from '@/components/Email/index.vue'
-import Email from '@/components/Email/index.vue'
-import {IInput} from "@/components/ui/input";
-
+import Email from '@/components/Email/index.vue';
+import KillsIcons from '@/components/KillsIcons/index.vue';
+import KillsList from '@/components/KillsList/index.vue'
 
 gsap.registerPlugin(ScrollTrigger);
 
-let t2: gsap.core.Timeline | null = null;
+let t1: gsap.core.Timeline | null = null;
+// let t2: gsap.core.Timeline | null = null;
 let typed: Typed | null = null;
 
 const imgBg = ref(Bg_1);
@@ -76,53 +76,21 @@ onMounted(() => {
     },
   })
 
-  // gsap.to('#scroll-trigger',{
-  //   scrollTrigger: {
-  //     trigger: '#card-section',
-  //     start: 'top',
-  //     end: 'bottom',
-  //     scrub: false,
-  //     pin: false,
-  //     markers: true,
-  //     onEnter: () => {
-  //       gsap.to('#scroll-trigger', {
-  //         scale: 1.05,
-  //         filter: 'blur(8px)',
-  //         opacity: 0,
-  //         duration: 0.5,
-  //         onComplete: () => {
-  //           imgBg.value = Bg_2;
-  //           gsap.to('#scroll-trigger', {
-  //             scale: 1,
-  //             filter: 'blur(0px)',
-  //             opacity: 1,
-  //             duration: 0.5
-  //           });
-  //         }
-  //       });
-  //     },
-  //     onLeaveBack: () => {
-  //       gsap.to('#scroll-trigger', {
-  //         scale: 1.05,
-  //         filter: 'blur(8px)',
-  //         opacity: 0,
-  //         duration: 0.5,
-  //         onComplete: () => {
-  //           imgBg.value = Bg_1;
-  //           gsap.to('#scroll-trigger', {
-  //             scale: 1,
-  //             filter: 'blur(0px)',
-  //             opacity: 1,
-  //             duration: 0.5
-  //           });
-  //         }
-  //       });
-  //     }
-  //   },
-  //   ease:'power1.inOut',
-  // })
+//   gsap.to('#email', {
+//     scrollTrigger: {
+//     trigger: '#kills-section',
+//     start: '+=80%',
+//     end: 'bottom',
+//     scrub: true,
+//     pin: false,
+//     markers: true
+//   },
+//     xPercent: 0
+//   }, 
+// )
 
-  t2 = gsap.timeline({
+
+  t1 = gsap.timeline({
     scrollTrigger: {
       trigger: '#card-container',
       start: '+=50%',
@@ -133,7 +101,7 @@ onMounted(() => {
     }
   });
 
-  t2
+  t1
     .fromTo('#card', { scale: 0, xPercent: 50, yPercent: 50, }, { scale: 1, xPercent: 0, yPercent: 0 })
     .fromTo('#project-1', { opacity: 0, xPercent: 50, yPercent: 50, }, { opacity: 1, xPercent: 0, yPercent: 0 }, '+=0.3')
     .fromTo('#project-2', { opacity: 0, xPercent: -50, yPercent: 50, }, { opacity: 1, xPercent: 0, yPercent: 0 }, '<=')
@@ -144,12 +112,55 @@ onMounted(() => {
     .to('#project-3 h3, #project-3 p', { color: '#fff' }, '<=')
     .to('#project-4 h3, #project-4 p', { color: '#fff' }, '<=');
 
+  // GlobeBall 动画
+  gsap.fromTo('#global', { xPercent: -100, opacity: 0 }, {
+    scrollTrigger: {
+      trigger: '#global',
+      start: 'top 80%',
+      end: 'top 20%',
+      scrub: false,
+    },
+    xPercent: 0,
+    opacity: 1,
+    duration: 0.5,
+    ease: 'power1.inOut',
+  });
 
+  // Email 动画
+  gsap.fromTo('#email', { xPercent: 100, opacity: 0 }, {
+    scrollTrigger: {
+      trigger: '#email',
+      start: 'top 80%',
+      end: 'top 20%',
+      scrub: false,
+    },
+    xPercent: 0,
+    opacity: 1,
+    duration: 0.5,
+    ease: 'power1.inOut',
+  });
 })
 
+// t2 = gsap.timeline({
+//   scrollTrigger: {
+//     trigger: '#email-section',
+//     start: '+=75%',
+//     end: 'bottom-=100',
+//     scrub: false,
+//     pin: false,
+//     markers: true
+//   }
+// });
+
+// t2
+// //  .fromTo('#global', { xPercent: -100, opacity:0 }, { xPercent: 0, opacity:1, duration: 0.5})
+//  .fromTo('#email', { xPercent: 100, }, { xPercent: 0})
+
+
+
 onUnmounted(() => {
-  // t1?.kill();
-  t2?.kill();
+  t1?.kill();
+  // t2?.kill();
   typed?.destroy();
 })
 
@@ -223,10 +234,23 @@ onUnmounted(() => {
         </template>
       </SimplePerspectiveCard>
     </section>
+    <!-- 技能 -->
+    <section class="w-full h-screen bg-black relative grid xl:grid-cols-[2fr_1fr] grid-cols-1 px-10" id="kills-section">
+      <div class="flex items-center">
+        <KillsList/>
+      </div>
+      <div class="flex items-center">
+        <KillsIcons/>
+      </div>
+    </section>
     <!-- 3d globe & 邮件-->
-    <section class="w-full h-screen bg-black relative flex items-center px-10" id="email-section">
-      <GlobeBall />
-      <Email />
+    <section class="w-full h-screen bg-black relative grid xl:grid-cols-[1fr_2fr] grid-cols-1 px-10 overflow-x-hidden" id="email-section">
+      <div class="flex items-center">
+        <GlobeBall id="global"/>
+      </div>
+      <div id="email" class="md:w-[60rem] w-96 ml-10 flex items-center">
+        <Email/>
+      </div>
     </section>
   </main>
 </template>
