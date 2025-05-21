@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import SimplePerspectiveCard from '@/components/card/simplePerspectiveCard.vue';
 import ParticlesBg from '@/components/ui/particles-bg/ParticlesBg.vue';
-import { onMounted, onUnmounted, reactive,ref } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import gsap from 'gsap';
 import ScrollTrigger from "gsap/ScrollTrigger.js";
-import Bg_1 from '@/assets/bg_1.jpg';
+// import Bg from '@/assets/bg_1.jpg';
+import Bg from './assets/bg_1.jpg';
 import Typed from 'typed.js';
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 import GlobeBall from '@/components/GlobeBall/index.vue';
@@ -16,13 +17,9 @@ import KillsList from '@/components/KillsList/index.vue'
 gsap.registerPlugin(ScrollTrigger);
 
 let t1: gsap.core.Timeline | null = null;
-// let t2: gsap.core.Timeline | null = null;
 let typed: Typed | null = null;
 
-const imgBg = ref(Bg_1);
-const imgOpacity = ref(1);
-
-const timeline_data = reactive([
+const timeline_data = [
   {
     id: "1",
     label: "2016.09 - 2020.06",
@@ -38,7 +35,7 @@ const timeline_data = reactive([
     label: "2021.10 - today",
     desc: "南京恩博科技有限公司 前端工程师 参与公司内部项目开发"
   },
-])
+]
 
 onMounted(() => {
   typed = new Typed(document.querySelector('#typed'), {
@@ -72,23 +69,8 @@ onMounted(() => {
       end: 'bottom-=' + document.getElementById('card-section')?.offsetHeight,
       scrub: true,
       pin: '#scroll-trigger',
-      // markers: true,
     },
   })
-
-//   gsap.to('#email', {
-//     scrollTrigger: {
-//     trigger: '#kills-section',
-//     start: '+=80%',
-//     end: 'bottom',
-//     scrub: true,
-//     pin: false,
-//     markers: true
-//   },
-//     xPercent: 0
-//   }, 
-// )
-
 
   t1 = gsap.timeline({
     scrollTrigger: {
@@ -141,23 +123,6 @@ onMounted(() => {
   });
 })
 
-// t2 = gsap.timeline({
-//   scrollTrigger: {
-//     trigger: '#email-section',
-//     start: '+=75%',
-//     end: 'bottom-=100',
-//     scrub: false,
-//     pin: false,
-//     markers: true
-//   }
-// });
-
-// t2
-// //  .fromTo('#global', { xPercent: -100, opacity:0 }, { xPercent: 0, opacity:1, duration: 0.5})
-//  .fromTo('#email', { xPercent: 100, }, { xPercent: 0})
-
-
-
 onUnmounted(() => {
   t1?.kill();
   // t2?.kill();
@@ -170,8 +135,7 @@ onUnmounted(() => {
   <main id="container">
     <!-- 简介 -->
     <section class="w-full h-screen overflow-hidden flex items-center justify-center" id="scroll-trigger-wrapper">
-      <img class="w-full h-full object-cover absolute inset-0 backdrop-blur-sm" :src="imgBg"
-        :style="{opacity: imgOpacity}" alt="" id='scroll-trigger' />
+      <img class="w-full h-full object-cover absolute inset-0 backdrop-blur-sm" :src="Bg" alt="" id='scroll-trigger' />
       <div class="fixed flex flex-col justify-center items-center px-4 z-10" id="Introduction">
         <div class="max-w-3xl mx-auto text-center backdrop-blur-sm">
           <div>
@@ -240,16 +204,17 @@ onUnmounted(() => {
         <!-- <KillsList/> -->
       </div>
       <div class="flex items-center">
-        <KillsIcons/>
+        <KillsIcons />
       </div>
     </section>
     <!-- 3d globe & 邮件-->
-    <section class="w-full h-screen bg-black relative grid xl:grid-cols-[1fr_2fr] grid-cols-1 px-10 overflow-x-hidden" id="email-section">
+    <section class="w-full h-screen bg-black relative grid xl:grid-cols-[1fr_2fr] grid-cols-1 px-10 overflow-x-hidden"
+      id="email-section">
       <div class="flex items-center">
-        <GlobeBall id="global"/>
+        <GlobeBall id="global" />
       </div>
       <div id="email" class="md:w-[60rem] w-96 ml-10 flex items-center">
-        <Email/>
+        <Email />
       </div>
     </section>
   </main>

@@ -1,11 +1,12 @@
 <template>
-  <div ref="timelineContainerRef" :class="cn('w-full bg-white font-sans md:px-10 dark:bg-neutral-950', containerClass)">
+  <div ref="timelineContainerRef"
+    :class="cn('w-full bg-white font-sans md:px-10 dark:bg-neutral-950', props.containerClass)">
     <div class="mx-auto max-w-7xl px-4 py-20 lg:px-10 md:px-8">
-      <h2 :class="cn('mb-4 max-w-4xl text-lg text-black md:text-4xl dark:text-white', titleClass)">
-        {{ title }}
+      <h2 :class="cn('mb-4 max-w-4xl text-lg text-black md:text-4xl dark:text-white', props.titleClass)">
+        {{ props.title }}
       </h2>
       <p class="max-w-sm text-sm text-neutral-700 md:text-base dark:text-neutral-300">
-        {{ description }}
+        {{ props.description }}
       </p>
     </div>
 
@@ -42,13 +43,13 @@
 
 <script lang="ts" setup>
 import { Motion, useScroll, useTransform } from 'motion-v';
-import type { HTMLAttributes } from 'vue';
+import { defineProps, onMounted, ref, watch, nextTick, type HTMLAttributes } from 'vue';
 import { cn } from '@/lib/utils'
 
 interface Props {
-  containerClass?: HTMLAttributes['class'];
-  class?: HTMLAttributes['class'];
-  titleClass?: HTMLAttributes['class'];
+  containerClass?: string;
+  class?: string;
+  titleClass?: string;
   items?: {
     id: string;
     label: string;
@@ -57,12 +58,42 @@ interface Props {
   description?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  items: () => [],
+// const props = withDefaults(defineProps<Props>(), {
+//   items: () => [],
+// });
+
+// 由于报错信息提示非类型化函数调用不能接受类型参数，推测可能环境不支持泛型写法
+// 这里采用传统的方式定义 props 类型
+const props = defineProps({
+  containerClass: {
+    type: String,
+    default: undefined
+  },
+  class: {
+    type: String,
+    default: undefined
+  },
+  titleClass: {
+    type: String,
+    default: undefined
+  },
+  items: {
+    type: Array as () => { id: string; label: string }[],
+    default: () => []
+  },
+  title: {
+    type: String,
+    default: undefined
+  },
+  description: {
+    type: String,
+    default: undefined
+  }
 });
 
-const timelineContainerRef = ref<HTMLElement | null>(null);
+const timelineContainerRef = ref<any>(null);
 const timelineRef = ref<HTMLElement | null>(null);
+// 由于非类型化函数调用不能接受类型参数，去掉类型参数
 const height = ref(0);
 
 onMounted(async () => {
@@ -81,7 +112,7 @@ const { scrollYProgress } = useScroll({
 const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 const heightTransform = ref(useTransform(scrollYProgress, [0, 1], [0, 0]));
 
-watch(height, (newHeight) => {
+watch(height, (newHeight: number) => {
   heightTransform.value = useTransform(scrollYProgress, [0, 1], [0, newHeight]);
 });
 </script>
