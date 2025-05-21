@@ -6,6 +6,7 @@
     "strict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "moduleResolution": "node",
     "erasableSyntaxOnly": false,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": false,
@@ -19,9 +20,9 @@
   },
   "include": [
     "src/**/*.ts",
+    "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/**/*.gltf",
     "./node_modules/**/*.js"
   ]
 }
