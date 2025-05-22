@@ -1,59 +1,49 @@
 <template>
-      <div class="relative flex h-[500px] w-full flex-col overflow-hidden p-6">
-        <AnimatedList>
-          <template #default>
-            <Notification
-              v-for="(item, idx) in notifications"
-              :key="idx"
-              :name="item.name"
-              :description="item.description"
-              :icon="item.icon"
-              :color="item.color"
-              :time="item.time"
-            />
-          </template>
-        </AnimatedList>
+  <div class="grid xl:grid-cols-4 grid-cols-2 gap-x-1 gap-y-5 w-full">
+    <GlareCard v-for="({desc,logo},idx) in kills" :key="idx" :class="cn('p-4 pt-20','kill-card')">
+      <div class="flex flex-col w-full h-full justify-between items-center">
+        <div class="flex justify-center items-center">
+          <img :src="logo" alt="" class="w-16 h-16">
+        </div>
+        <span class="whitespace-normal text-white text-2xl tracking-wider">{{desc}}</span>
       </div>
-  </template>
+    </GlareCard>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import {GlareCard} from '@/components/ui/glare-card';
+import worker from '@/assets/logos/worker.png';
+import tool from '@/assets/logos/tool.png';
+import project from '@/assets/logos/project.png';
+import setting from '@/assets/logos/setting.png';
+import draw from '@/assets/logos/draw.png';
+import { cn } from '@/lib/utils';
   
-  <script setup lang="ts">
-  import { AnimatedList,Notification } from '@/components/ui/animated-list';
+const kills = [
+   {
+    logo:[worker],
+    desc:'了解TypeScript,ES6及以上版本的JavaScript语法，优化开发效率',
+  },
+  {
+    logo:[setting],
+    desc:'了解React、Vue和Svelte等框架，具备前端开发能力',
+  },
+   {
+    logo:[draw],
+    desc:'了解Canvas、Echarts和Three等技术，具备数据可视化开发能力',
+  },
+   {
+    logo:[tool],
+    desc:'了解WebGIS、Cesium，具备地理信息系统开发能力',
+  },
+    {
+    logo:[project],
+    desc:'了解antd、element和shadcn等UI框架，具备UI开发能力',
+  },
+]
+
+</script>
+<style scoped>
   
-  const notifications = [
-    {
-      name: "Payment received",
-      description: "Inspira UI",
-      time: "15m ago",
-      icon: "💸",
-      color: "#00C9A7",
-    },
-    {
-      name: "User signed up",
-      description: "Inspira UI",
-      time: "10m ago",
-      icon: "👤",
-      color: "#FFB800",
-    },
-    {
-      name: "New message",
-      description: "Inspira UI",
-      time: "5m ago",
-      icon: "💬",
-      color: "#FF3D71",
-    },
-    {
-      name: "New event",
-      description: "Inspira UI",
-      time: "2m ago",
-      icon: "🗞️",
-      color: "#1E86FF",
-    },
-    {
-      name: "Task completed",
-      description: "Inspira UI",
-      time: "1m ago",
-      icon: "✅",
-      color: "#45B26B",
-    },
-  ];
-  </script>
+</style>

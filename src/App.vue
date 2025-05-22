@@ -121,6 +121,26 @@ onMounted(() => {
     duration: 0.5,
     ease: 'power1.inOut',
   });
+
+  // KillsList 动画
+  gsap.utils.toArray('.kill-card').forEach((item:HTMLElement, index) => {
+    gsap.fromTo(item, { xPercent: 200 }, {
+      scrollTrigger: {
+        trigger: item,
+        start: 'top 80%',
+        end: 'top 20%',
+        scrub: false,
+      },
+      xPercent: 0,
+      skewX: 0,
+      duration: 0.5,
+      ease: 'power1.inOut',
+      delay: index * 0.12,
+    })
+  })
+
+
+
 })
 
 onUnmounted(() => {
@@ -160,7 +180,7 @@ onUnmounted(() => {
       </ParticlesBg>
       <SimplePerspectiveCard cardClass="md:w-[80rem] bg-black/10 backdrop-blur-2xl border-black/40" id='card'>
         <template #title>
-          <div class="text-white">我的工作</div>
+          <div class="text-white">我的项目</div>
         </template>
         <template #desc>
           <span class="text-[#f0f0f0]">和不少人合作开发了一些简单的项目</span>
@@ -201,20 +221,20 @@ onUnmounted(() => {
     <!-- 技能 -->
     <section class="w-full h-screen bg-black relative grid xl:grid-cols-[2fr_1fr] grid-cols-1 px-10" id="kills-section">
       <div class="flex items-center">
-        <!-- <KillsList/> -->
+        <KillsList class="z-20"/>
       </div>
       <div class="flex items-center">
         <KillsIcons />
       </div>
     </section>
     <!-- 3d globe & 邮件-->
-    <section class="w-full h-screen bg-black relative grid xl:grid-cols-[1fr_2fr] grid-cols-1 px-10 overflow-x-hidden"
+    <section class="w-full h-screen bg-black relative grid xl:grid-cols-[1fr_2fr] grid-cols-1 px-16 overflow-x-hidden"
       id="email-section">
       <div class="flex items-center">
         <GlobeBall id="global" />
       </div>
-      <div id="email" class="md:w-[60rem] w-96 ml-10 flex items-center">
-        <Email />
+      <div id="email" class=" flex items-center justify-end">
+        <Email class="md:w-[60rem] w-96"/>
       </div>
     </section>
   </main>

@@ -402,10 +402,8 @@ const sampleArcs = [
 </script>
 
 <template>
-    <!-- <ClientOnly> -->
     <div>
         <Meteors class="absolute inset-0" :count="30"/>
         <GithubGlobe :globe-config="globeConfig" :data="sampleArcs" class="md:h-[50rem] md:w-[50rem] h-96 w-96" />
     </div>
-    <!-- </ClientOnly> -->
 </template>

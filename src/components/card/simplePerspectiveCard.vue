@@ -28,32 +28,15 @@
             :translate-z="100"
             class="mt-4 w-full"
           >
-            <!-- <img
-              src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              height="1000"
-              width="1000"
-              class="h-60 w-full rounded-xl object-cover group-hover/card:shadow-xl"
-              alt="thumbnail"
-            /> -->
             <slot name="content"/>
           </CardItem>
           <div class="mt-20 flex items-center justify-end">
-            <!-- <CardItem
-              :translate-z="20"
-              as="a"
-              href="https://rahulv.dev"
-              target="__blank"
-              class="rounded-xl px-4 py-2 text-xs font-normal dark:text-white"
-            >
-              <slot name="link"/>
-            </CardItem> -->
             <CardItem
                 v-if="$slots.button"
                 :translate-z="20"
                 as="button"
             >
                 <slot name="button"/>
-                <!-- <InteractiveHoverButton @click="onClick" :text="'开始'"/> -->
             </CardItem>
            
           </div>
