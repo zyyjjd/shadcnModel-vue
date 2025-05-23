@@ -13,6 +13,7 @@ import SingleTimeline from '@/components/SingleTimeline/index.vue';
 import Email from '@/components/Email/index.vue';
 import KillsIcons from '@/components/KillsIcons/index.vue';
 import KillsList from '@/components/KillsList/index.vue'
+import HorizontalScrollingList from '@/components/HorizontalScrollingList/index.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -219,11 +220,14 @@ onUnmounted(() => {
       </SimplePerspectiveCard>
     </section>
     <!-- 技能 -->
-    <section class="w-full h-screen bg-black relative grid xl:grid-cols-[2fr_1fr] grid-cols-1 px-10" id="kills-section">
-      <div class="flex items-center">
+    <section class="w-full h-screen bg-black relative grid grid-cols-6 grid-rows-5 px-10" id="kills-section">
+      <div class="col-span-6 row-span-1 flex justify-center items-center">
+        <HorizontalScrollingList/>
+      </div>
+      <div class="col-span-4 row-span-4 flex items-center">
         <KillsList class="z-20"/>
       </div>
-      <div class="flex items-center">
+      <div class="col-span-2 row-span-4 flex items-center">
         <KillsIcons />
       </div>
     </section>
