@@ -228,7 +228,7 @@ onUnmounted(() => {
       </div>
     </section>
     <!-- 3d globe & 邮件-->
-    <section class="w-full h-screen bg-black relative grid xl:grid-cols-[1fr_2fr] grid-cols-1 px-16 overflow-x-hidden"
+    <section class="w-full h-screen bg-black relative grid xl:grid-cols-[1fr_2fr] grid-cols-1 px-16 overflow-x-hidden z-40"
       id="email-section">
       <div class="flex items-center">
         <GlobeBall id="global" />

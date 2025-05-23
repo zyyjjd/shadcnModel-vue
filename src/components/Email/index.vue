@@ -12,7 +12,7 @@
             </div>
             <div class="flex gap-2 w-full h-full">
                 <div class="text-slate-600 leading-8">你的邮箱</div>
-                <IInput :modelValue="email" placeholder="你叫邮箱是什么？" container-class="flex-1 z-10" />
+                <IInput :modelValue="email" placeholder="你的邮箱是什么？" container-class="flex-1 z-10" />
             </div>
             <div class="flex gap-2 w-full h-full">
                 <div class="text-slate-600 leading-8">你的留言</div>
