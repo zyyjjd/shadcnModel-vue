@@ -1,5 +1,4 @@
 <template>
-    <ClientOnly>
       <CardContainer>
         <CardBody
           :class="cn(
@@ -42,7 +41,6 @@
           </div>
         </CardBody>
       </CardContainer>
-    </ClientOnly>
   </template>
   
   <script setup lang="ts">

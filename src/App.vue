@@ -38,6 +38,9 @@ const timeline_data = [
   },
 ]
 
+const HorizontalScrollingList_data_1 = ['html','css','less','scss','tailwindcss','javaScript','typeScript','node','jquery','vue','react'];
+const HorizontalScrollingList_data_2 = ['antd','element-ui','native','shadcn/ui','qiankun','vite','git','three','echarts','lodash','vueuse'];
+
 onMounted(() => {
   typed = new Typed(document.querySelector('#typed'), {
     strings: ['Hello World', 'I am JJD', '我是一个前端工程师'],
@@ -220,9 +223,10 @@ onUnmounted(() => {
       </SimplePerspectiveCard>
     </section>
     <!-- 技能 -->
-    <section class="w-full h-screen bg-black relative grid grid-cols-6 grid-rows-5 px-10" id="kills-section">
-      <div class="col-span-6 row-span-1 flex justify-center items-center">
-        <HorizontalScrollingList/>
+    <section class="w-full h-screen bg-black relative grid grid-cols-6 grid-rows-5 px-10 z-40" id="kills-section">
+      <div class="col-span-6 row-span-1 flex justify-center items-center flex-col">
+        <HorizontalScrollingList :data="HorizontalScrollingList_data_1"/>
+        <HorizontalScrollingList :data="HorizontalScrollingList_data_2" direction="right"/>
       </div>
       <div class="col-span-4 row-span-4 flex items-center">
         <KillsList class="z-20"/>
