@@ -24,7 +24,7 @@ const timeline_data = [
   {
     id: "1",
     label: "2016.09 - 2020.06",
-    desc: '江苏海洋大学  统计学 本科 课外学习：python javaScript java等语音基础'
+    desc: '江苏海洋大学  统计学 本科 课外学习：python javaScript java等语言基础'
   },
   {
     id: "2",
